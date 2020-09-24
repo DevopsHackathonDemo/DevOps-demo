@@ -63,10 +63,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build_files
-      run: |
-        cd build
-        ls
-        pwd
+#      run: |
+#        cd build
+#        ls
+#        pwd
     - name: deploy
       uses: garygrossgarten/github-action-scp@release
       with:
