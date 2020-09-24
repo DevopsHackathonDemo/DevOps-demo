@@ -61,7 +61,7 @@ jobs:
     needs: [build, test]
     steps:
     - name: deploy
-      uses: actions/appleboy/scp-action@master
+      uses: appleboy/scp-action@master
       if: github.ref == 'refs/heads/development'
       with:
         host: ${{ secrets.HOST }}
