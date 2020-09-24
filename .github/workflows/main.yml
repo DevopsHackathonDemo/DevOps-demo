@@ -84,7 +84,7 @@ jobs:
         path: ./build/test.tar
     - name: print build dir
       run: |
-        ls
+        ls -la
     - name: deploy
       uses: appleboy/scp-action@master
       with:
