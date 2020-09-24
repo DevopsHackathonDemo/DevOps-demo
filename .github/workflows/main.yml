@@ -51,7 +51,7 @@ jobs:
     - name: Archive production build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Build files
+        name: Build_files
         path: | 
           build
 
@@ -59,7 +59,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     steps:
-    - name: find build
+    - name: Fetch build files
+      uses: actions/download-artifact@v2
+      with:
+        name: build_files
       run: |
         cd build
         ls
