@@ -64,10 +64,6 @@ jobs:
       with:
         name: build_files
         path: ./build/
-#      run: |
-#        cd build
-#        ls
-#        pwd
     - name: deploy
       uses: garygrossgarten/github-action-scp@release
       with:
