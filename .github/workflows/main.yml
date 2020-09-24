@@ -32,6 +32,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: pwd
+      run: pwd
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
