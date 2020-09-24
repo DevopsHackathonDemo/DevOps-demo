@@ -88,7 +88,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-	tar_tmp_path: /tmp
+        tar_tmp_path: /tmp
         source: "./build/*"
         target: "/var/www/dev"
 #
