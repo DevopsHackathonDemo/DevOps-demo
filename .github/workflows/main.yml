@@ -57,8 +57,8 @@ jobs:
     - name: pwd
       run: |
         cd build
-	ls
-	pwd
+        ls
+        pwd
 
 
   deployment:
