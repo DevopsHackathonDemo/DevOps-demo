@@ -62,11 +62,11 @@ jobs:
     - name: deploy
       uses: garygrossgarten/github-action-scp@release
       with:
+        local: /home/runner/work/DevOps-demo/DevOps-demo/build
+        remote: /var/www/dev
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-        local: /home/runner/work/DevOps-demo/DevOps-demo/build
-        remote: /var/www/dev
 
 #  deployment:
 #    runs-on: ubuntu-latest
