@@ -88,8 +88,9 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-        source: "."
+#        source: "."
         target: "/var/www/dev"
+        rm: true
 #
 #    - uses: actions/scp-action@master
 #      if: github.ref == 'refs/heads/main'
