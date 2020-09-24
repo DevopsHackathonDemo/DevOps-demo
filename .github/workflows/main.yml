@@ -53,7 +53,7 @@ jobs:
     needs: [build, test]
     steps:
     - name: deploy
-    - uses: actions/scp-action@master
+      uses: actions/scp-action@master
       if: github.ref == 'refs/heads/development'
       with:
         host: ${{ secrets.HOST }}
