@@ -85,7 +85,7 @@ jobs:
     - name: print build dir
       run: |
         ls -la
-        type build
+        pwd
     - name: deploy
       uses: appleboy/scp-action@master
       with:
@@ -93,7 +93,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-        source: "./build"
+        source: "/home/runner/work/DevOps-demo/DevOps-demo/build/*"
         target: "/var/www/dev"
 #
 #    - uses: actions/scp-action@master
