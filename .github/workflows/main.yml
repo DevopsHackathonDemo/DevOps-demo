@@ -23,7 +23,7 @@ jobs:
         
     - name: Install dependencies, run tests & build
       run: |
-        npm ci
+        npm i
         npm test
     env:
       CI: true
@@ -32,6 +32,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
     - name: Cache node_modules
       uses: actions/cache@v2.1.1
       with:
