@@ -86,11 +86,11 @@ jobs:
       run: |
         ls
         cd build
-	ls
+        ls
     - name: deploy
       uses: appleboy/scp-action@master
       with:
-        host: niclaslamponen.com
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
         source: "./build/*"
