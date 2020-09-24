@@ -62,8 +62,8 @@ jobs:
     - name: find build
       run: |
         cd build
-	ls
-	pwd
+        ls
+        pwd
     - name: deploy
       uses: garygrossgarten/github-action-scp@release
       with:
