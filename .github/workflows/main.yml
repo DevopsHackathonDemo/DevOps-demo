@@ -32,9 +32,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: pwd
-      run: pwd
-
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -57,6 +54,12 @@ jobs:
         name: Build files
         path: | 
           build
+    - name: pwd
+      run: |
+        cd build
+	ls
+	pwd
+
 
   deployment:
     runs-on: ubuntu-latest
