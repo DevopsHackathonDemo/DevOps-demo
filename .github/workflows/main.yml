@@ -82,6 +82,11 @@ jobs:
       with:
         name: build_files
         path: ./build
+    - name: print build dir
+      run: |
+        ls
+        cd build
+	ls
     - name: deploy
       uses: appleboy/scp-action@master
       with:
