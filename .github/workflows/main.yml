@@ -71,7 +71,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-        local: /home/runner/work/DevOps-demo/DevOps-demo/build/
+        local: /home/runner/work/DevOps-demo/DevOps-demo/build
         remote: /var/www/dev
 
 #  deployment:
