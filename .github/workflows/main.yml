@@ -62,15 +62,15 @@ jobs:
         source: "build/*"
         target: /var/www/dev
 
-    - uses: actions/scp-action@master
-      if: github.ref == 'refs/heads/main'
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER }}
-        password: ${{ secrets.SSH_USER_PASS }}
-        source: "build/*"
-        target: /var/www/prod
-
+#    - uses: actions/scp-action@master
+#      if: github.ref == 'refs/heads/main'
+#      with:
+#        host: ${{ secrets.HOST }}
+#        username: ${{ secrets.SSH_USER }}
+#        password: ${{ secrets.SSH_USER_PASS }}
+#        source: "build/*"
+#        target: /var/www/prod
+#
 #      uses: 
 #      - name: Deploy production
 #        if: github.ref == 'refs/heads/main'
