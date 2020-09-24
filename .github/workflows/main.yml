@@ -88,9 +88,8 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_USER_PASS }}
-        tar_tmp_path: /var/www/dev
-        source: "./build/*"
-        target: "/tmp"
+        source: "./build"
+        target: "/var/www/dev"
 #
 #    - uses: actions/scp-action@master
 #      if: github.ref == 'refs/heads/main'
