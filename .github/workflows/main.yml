@@ -54,12 +54,6 @@ jobs:
         name: Build files
         path: | 
           build
-    - name: pwd
-      run: |
-        cd build
-        ls
-        pwd
-
 
   deployment:
     runs-on: ubuntu-latest
