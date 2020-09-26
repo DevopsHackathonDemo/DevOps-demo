@@ -93,8 +93,8 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        # context: ./
-        # file: ./Dockerfile
+        context: ./
+        file: ./Dockerfile.dev
         push: true
         tags: devopsdemo:latest
     - name: Image digest
