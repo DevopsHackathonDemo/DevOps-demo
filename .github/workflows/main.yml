@@ -67,16 +67,16 @@ jobs:
     #   with:
     #     name: build_files
     #     path: ./build/
-    # -
-    #   name: Set up QEMU
-    #   uses: docker/setup-qemu-action@v1
-    # -
-    #   name: Set up Docker Buildx
-    #   id: buildx
-    #   with:
-    #     install: true
-    #   uses: docker/setup-buildx-action@v1 
-    # -
+    -
+      name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    -
+      name: Set up Docker Buildx
+      id: buildx
+      # with:
+      #   install: true
+      uses: docker/setup-buildx-action@v1 
+    -
     #   name: Builder instance name
     #   run: echo ${{ steps.buildx.outputs.name }}
     # -
@@ -93,10 +93,10 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v1
       with:
-        context: ./
-        file: ./Dockerfile
+        # context: ./
+        # file: ./Dockerfile
         push: true
-        tags: marmotas/devopsdemo:latest
+        tags: devopsdemo:latest
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
 
