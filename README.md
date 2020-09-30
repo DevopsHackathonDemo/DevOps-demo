@@ -13,9 +13,9 @@ Tooling used on Developers local environment
 #### Talisman
 https://github.com/thoughtworks/talisman
 
-Talisman is a tool that installs a hook to your repository to ensure that potential secrets or sensitive information do not leave the developer's workstation.
+Talisman is a tool that installs a hook to your repository to ensure that potential secrets or sensitive information do not leave the developer's workstation. It validates the outgoing changeset for things that look suspicious - such as potential SSH keys, authorization tokens, private keys etc.
 
-It validates the outgoing changeset for things that look suspicious - such as potential SSH keys, authorization tokens, private keys etc.
+We have Talisman installed on our local workstations as a pre-commit git hook template.
 
 ### Linters
 Set up a linter into your IDE, depends on the language you are developing on. Git hooks for example could also be used to enforce project coding standards.
