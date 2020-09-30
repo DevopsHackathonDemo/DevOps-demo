@@ -32,6 +32,13 @@ There are lots of plugins for every IDE out there, that boosts greatly boosts pr
 
 ## Security
 
+### Njsscan
+https://github.com/ajinabraham/njsscan#github-action
+
+Njsscan is an open source Statis Application Security Testingh (SAST) tool that aims to find insecure code patterns in node.js applications, and is currently integrated to our CI/CD pipeline workflow.
+
+It utilizes libsast pattern matcher and the syntax-aware semantic code pattern search tool semgrep, and is set to run on every push to our development branch and scan the entire project.
+
 ## Monitoring
 
 # Resources
