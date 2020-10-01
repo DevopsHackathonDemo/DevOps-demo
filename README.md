@@ -57,6 +57,11 @@ WIP
 
 ## Security
 
+### Dependabot
+https://dependabot.com/
+
+Dependabot is the GitHub native solution for Software Composition Analysis (SCA). It checks for updates for possible outdated and vulnerable packages, and opens a pull-request automatically for every out-of-date dependency, which we then only need to review and merge to the project.
+
 ### Njsscan
 https://github.com/ajinabraham/njsscan#github-action
 
