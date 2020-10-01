@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ development ]
+    branches: [development]
 
 jobs:
   npmaudit:
@@ -20,73 +20,73 @@ jobs:
           issue_labels: vulnerability,test
           dedupe_issues: true
   zap_scan:
-      runs-on: ubuntu-latest
-      name: Scan ZAP website
-      steps:
-        - name: ZAP Scan
-          uses: zaproxy/action-full-scan@v0.1.0
-          with:
-            target: 'https://www.dev.niclaslamponen.com/'
+    runs-on: ubuntu-latest
+    name: Scan ZAP website
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.1.0
+        with:
+          target: 'https://www.dev.niclaslamponen.com/'
   njsscan:
     runs-on: ubuntu-latest
     name: njsscan check
     steps:
-    - uses: actions/checkout@v1
-    - name: njsscan
-      id: njsscan
-      uses: ajinabraham/njsscan-action@v5
-      with:
-        args: '.'
+      - uses: actions/checkout@v1
+      - name: njsscan
+        id: njsscan
+        uses: ajinabraham/njsscan-action@v5
+        with:
+          args: '.'
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies, run tests & build
-      run: |
-        npm ci
-        npm test
+      - name: Install dependencies, run tests & build
+        run: |
+          npm ci
+          npm test
     env:
       CI: true
   deployment:
     runs-on: ubuntu-latest
     needs: [test, njsscan, npmaudit]
     steps:
-    -
-      name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
-    -
-      name: Set up Docker Buildx
-      id: buildx
-      uses: docker/setup-buildx-action@v1
-      with:
-        driver-opts: network=host
-    -
-      name: Login to Dockerhub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-    -
-      name: Get Build Context
-      uses: actions/checkout@v2
-    -
-      name: Push build
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        context: ./
-        file: ./Dockerfile
-        push: true
-        tags: marmotas/devopsdemo:latest
-    - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: network=host
+      -
+        name: Login to Dockerhub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      -
+        name: Get Build Context
+        uses: actions/checkout@v2
+      -
+        name: Push build
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: marmotas/devopsdemo:latest
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
