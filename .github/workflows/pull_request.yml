@@ -5,6 +5,20 @@ on:
     branches: [ development ]
 
 jobs:
+  npmaudit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: npm ci
+      - uses: oke-py/npm-audit-action@v1.5.2
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: oke-py
+          issue_labels: vulnerability,test
+          dedupe_issues: true
   zap_scan:
       runs-on: ubuntu-latest
       name: Scan ZAP website
@@ -24,19 +38,19 @@ jobs:
       with:
         args: '.'
   test:
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        
+
     - name: Install dependencies, run tests & build
       run: |
         npm ci
