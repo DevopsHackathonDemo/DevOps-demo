@@ -47,10 +47,12 @@ There are lots of plugins for every IDE out there, that boosts greatly boosts pr
 
 ### Docker
 https://www.docker.com/
+
 WIP
 
 ### Kubernetes
 https://kubernetes.io/
+
 WIP
 
 ## Security
@@ -75,6 +77,7 @@ https://github.blog/2020-09-30-code-scanning-is-now-available/
 We are also using GitHub code scanning, which is new GitHub-native approach to easily find security vulnerabilities. 
 
 ## Monitoring
+
 WIP
 
 # Resources
