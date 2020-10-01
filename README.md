@@ -9,6 +9,9 @@ Listing of tools we have found useful. Lots of alternatives for each and every o
 Tooling used on Developers local environment
 
 ### Pre-commit Hooks
+https://github.com/typicode/husky
+
+In our project, pre-commit hooks are enabled and managed by Husky, which almost lived up to it's slogan "Git hooks made easy"
 
 #### Talisman
 https://github.com/thoughtworks/talisman
@@ -17,8 +20,24 @@ Talisman is a tool that installs a hook to your repository to ensure that potent
 
 We have Talisman installed on our local workstations as a pre-commit git hook template.
 
+#### Lint-staged
+https://github.com/okonet/lint-staged
+
+Lint-staged is a tool that enables us to run various lint processes as a pre-commit hook, and enabled us to use the following linters as a pre-commit hook
+
+#### Eslint
+https://eslint.org/
+
+In addition to having eslint installed in our IDE's, we also set up the linter to run as a pre-commit hook. Eslint analyzes the code and looks for problems, and fixes them automatically if possible and adds them to your commit, which was enabled by lint-staged.
+
+#### Prettier
+https://prettier.io/
+
+Prettier is an opinionated code formatter which ensures that the newly created code is always clean and tidy format-wise, and is ran as a pre-commit hook through lint-staged.
+
 ### Linters
-Set up a linter into your IDE, depends on the language you are developing on. Git hooks for example could also be used to enforce project coding standards.
+Also remember to set up a linter into your IDE, depends on the language you are developing on. Git hooks for example could also be used to enforce project coding standards.
+
 
 ### IDE Plugins
 There are lots of plugins for every IDE out there, that boosts greatly boosts productivity and minimizes errors.  For example some I've installed on my VSCode: Docker, ESLint, GitHub Actions, GitLens, Remote - WSL 
@@ -29,10 +48,19 @@ There are lots of plugins for every IDE out there, that boosts greatly boosts pr
 ### Docker
 https://www.docker.com/
 
+WIP
+
 ### Kubernetes
 https://kubernetes.io/
 
+WIP
+
 ## Security
+
+### Dependabot
+https://dependabot.com/
+
+Dependabot is the GitHub native solution for Software Composition Analysis (SCA). It checks for updates for possible outdated and vulnerable packages, and opens a pull-request automatically for every out-of-date dependency, which we then only need to review and merge to the project.
 
 ### Njsscan
 https://github.com/ajinabraham/njsscan#github-action
@@ -54,6 +82,8 @@ https://github.blog/2020-09-30-code-scanning-is-now-available/
 We are also using GitHub code scanning, which is new GitHub-native approach to easily find security vulnerabilities. 
 
 ## Monitoring
+
+WIP
 
 # Resources
 ## DevOps
