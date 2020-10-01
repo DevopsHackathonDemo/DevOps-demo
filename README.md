@@ -27,17 +27,26 @@ There are lots of plugins for every IDE out there, that boosts greatly boosts pr
 ## Infrastructure as Code
 
 ### Docker
+https://www.docker.com/
 
 ### Kubernetes
+https://kubernetes.io/
 
 ## Security
 
 ### Njsscan
 https://github.com/ajinabraham/njsscan#github-action
 
-Njsscan is an open source Statis Application Security Testingh (SAST) tool that aims to find insecure code patterns in node.js applications, and is currently integrated to our CI/CD pipeline workflow.
+Njsscan is an open source Statis Application Security Testing (SAST) tool that aims to find insecure code patterns in node.js applications, and is currently integrated to our CI/CD pipeline workflow.
 
 It utilizes libsast pattern matcher and the syntax-aware semantic code pattern search tool semgrep, and is set to run on every push to our development branch and scan the entire project.
+
+### OWASP ZAP Full Scan
+https://github.com/marketplace/actions/owasp-zap-full-scan
+
+OWASP ZAP (Zed Attack Proxy) Full Scan is an open source Dynamic Application Security Testing (DAST) tool that is designed to perform automated security scans against applications and their environment.
+
+The ZAP Full Scan runs the ZAP spider and optionally also an ajax spider scan against the specified target site. The tool then reports it's findigs and automatically creates GitHub issues to the corresponding project in case it finds something alarming.
 
 ## Monitoring
 
