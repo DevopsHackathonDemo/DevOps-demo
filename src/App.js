@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>DevOps dev branch (murmeli takeover 8D).</p>
+        <p>DevOps dev branch (murmeli takeover 8D). uutta sisältöä</p>
         <a
           className="App-link"
           href="https://reactjs.org"
