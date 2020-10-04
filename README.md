@@ -1,8 +1,9 @@
 # DevOps-demo
 This repository servers as a demo for setting up a DevOps Pipeline. Essentially, we're using an empty React.js project and trunk based development model.
 
-https://reactjs.org/docs/create-a-new-react-app.html
-https://cloud.google.com/solutions/devops/devops-tech-trunk-based-development
+* https://reactjs.org/docs/create-a-new-react-app.html
+
+* https://cloud.google.com/solutions/devops/devops-tech-trunk-based-development
 
 # Tooling
 Listing of tools we have found useful. Lots of alternatives for each and every one of them exists out there!
