@@ -19,14 +19,6 @@ jobs:
           issue_assignees: oke-py
           issue_labels: vulnerability,test
           dedupe_issues: true
-  zap_scan:
-    runs-on: ubuntu-latest
-    name: Scan ZAP website
-    steps:
-      - name: ZAP Scan
-        uses: zaproxy/action-full-scan@v0.1.0
-        with:
-          target: 'https://www.dev.niclaslamponen.com/'
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
@@ -90,7 +82,7 @@ jobs:
       CI: true
   deployment:
     runs-on: ubuntu-latest
-    needs: [test, njsscan, npmaudit]
+    needs: [test, njsscan, npmaudit, analyze]
     steps:
       -
         name: Set up QEMU

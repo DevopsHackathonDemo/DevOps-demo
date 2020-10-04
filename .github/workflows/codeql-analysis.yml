@@ -6,15 +6,19 @@
 name: "CodeQL"
 
 on:
-  # push:
-  #   branches: [development]
-  # pull_request:
-  #   # The branches below must be a subset of the branches above
-  #   branches: [development]
   schedule:
-    - cron: '0 18 * * 5'
+    # Every monday morning
+    - cron: '0 6 * * 1'
 
 jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan ZAP website
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.1.0
+        with:
+          target: 'https://www.dev.niclaslamponen.com/'
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
