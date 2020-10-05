@@ -118,6 +118,6 @@ jobs:
         run: |
           export SSHPASS=${{ secrets.SSH_USER_PASS }}
           sed -i '/image: marmotas\/devopsdemo@sha256:*/c\          image: marmotas\/devopsdemo@sha256:${{ steps.docker_build.outputs.digest }}' ./kubeconfigs/devops.yaml
-          cat devops.yaml | head -n 22
+          cat ./kubeconfigs/devops.yaml | head -n 22
           sshpass -e scp -o stricthostkeychecking=no -r ${{ secrets.SSH_USER }}@95.217.186.152:/home/niclas
           sshpass -e ssh -o stricthostkeychecking=no ${{ secrets.SSH_USER }}@95.217.186.152 kubectl apply -f devops.yaml
