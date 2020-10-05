@@ -72,10 +72,15 @@ The entire stack is essentially built out of:
 
 ## Security
 
-### Dependabot
+### Dependabot (GitHub native)
 https://dependabot.com/
 
 Dependabot is the GitHub native solution for Software Composition Analysis (SCA). It checks for updates for possible outdated and vulnerable packages, and opens a pull-request automatically for every out-of-date dependency, which we then only need to review and merge to the project.
+
+### GitHub Code scanning (w/ CodeQL, GitHub native)
+https://github.blog/2020-09-30-code-scanning-is-now-available/
+
+We are also using GitHub code scanning, which is new GitHub-native approach to easily find security vulnerabilities. 
 
 ### Njsscan
 https://github.com/ajinabraham/njsscan#github-action
@@ -91,10 +96,6 @@ OWASP ZAP (Zed Attack Proxy) Full Scan is an open source Dynamic Application Sec
 
 The ZAP Full Scan runs the ZAP spider and optionally also an ajax spider scan against the specified target site. The tool then reports it's findigs and automatically creates GitHub issues to the corresponding project in case it finds something alarming.
 
-### GitHub Code scanning (w/ CodeQL)
-https://github.blog/2020-09-30-code-scanning-is-now-available/
-
-We are also using GitHub code scanning, which is new GitHub-native approach to easily find security vulnerabilities. 
 
 ## Monitoring
 
