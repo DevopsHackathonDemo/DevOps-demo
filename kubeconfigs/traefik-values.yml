@@ -1,0 +1,86 @@
+image:
+  name: traefik
+  tag: 2.3
+
+deployment:
+  enabled: true
+  replicas: 1
+
+podDisruptionBudget:
+  enabled: false
+
+ingressRoute:
+  dashboard:
+    enabled: true
+
+rollingUpdate:
+  maxUnavailable: 1
+  maxSurge: 1
+
+providers:
+  kubernetesCRD:
+    enabled: true
+
+additionalArguments:
+- --providers.kubernetescrd=true
+- --providers.kubernetesingress=true
+- "--certificatesresolvers.le.acme.storage=/data/acme.json"
+# - "--entrypoints.web.http.redirections.entrypoint.to=:443"
+# - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+# - "--api.dashboard=true"
+
+ports:
+  traefik:
+    port: 9000
+    expose: true
+    exposedPort: 9000
+    protocol: TCP
+  web:
+    port: 8000
+    hostPort: 80
+    expose: true
+    exposedPort: 80
+    protocol: TCP
+  websecure:
+    port: 8443
+    hostPort: 443
+    expose: true
+    exposedPort: 443
+    protocol: TCP
+
+service:
+  enabled: true
+  type: NodePort
+  externalIPs:
+  - "95.217.186.152"
+
+autoscaling:
+  enabled: false
+
+persistence:
+  enabled: true
+  existingClaim: traefik-persistence
+  accessMode: ReadWriteMany
+  size: 1Gi
+  path: /data
+  annotations: {}
+
+hostNetwork: false
+
+rbac:
+  enabled: true
+  namespaced: false
+
+serviceAccount:
+  name: ""
+
+securityContext:
+  capabilities:
+    drop: [ALL]
+  readOnlyRootFilesystem: true
+  runAsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+
+podSecurityContext:
+  fsGroup: 65532
