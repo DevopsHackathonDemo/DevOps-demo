@@ -49,15 +49,26 @@ There are lots of plugins for every IDE out there, that boosts greatly boosts pr
 
 ## Infrastructure as Code
 
+Developed in Docker environment -> changes pushed to git -> CI/CD tests pass -> docker image is built -> deployment into docker image repository (dockerhub) -> server will pull the latest image from hub -> rolling update to replace existing version with new
+
 ### Docker
 https://www.docker.com/
 
-WIP
+Docker for containerization.
+We use docker to create similar environment for all coders to develop the program. Also the final application is deployed as docker image.
 
 ### Kubernetes
 https://kubernetes.io/
 
-WIP
+Kubernetes on server side handles docker container orhcestration. This allows us to perform rolling updates with 0 downtime, get information of currently running pods and nodes and scale the application as needed. The configuration files for this setup can be found in `./kubeconfigs/` and they are mainly running on a cloud server with k3s deployed. Should be noted that we found kubernetes overkill and unnecessary for a small project like this, but we considered it an important technology to learn and as such we included it in our pipeline.
+
+The entire stack is essentially built out of:
+* k3s (kubernetes distro, with loadbalancer and traefik disabled `curl -sfL https://get.k3s.io | sh -s - --no-deploy=traefik --no-deploy=servicelb`)
+* helm (kubernetes package manager)
+* `devops.yaml` defining the `deployment`, `service` and `ingress`
+* `devops-tls.yaml` defining the TLS secured `IngressRoute`
+* `traefik-values.yaml` to override some of traefik default configuration values
+
 
 ## Security
 
@@ -87,7 +98,7 @@ We are also using GitHub code scanning, which is new GitHub-native approach to e
 
 ## Monitoring
 
-WIP
+On server `traefik` dashboard allows to get data of current kube configuration. Further tools such as prometheus could be considered for this.
 
 # Resources
 ## DevOps
