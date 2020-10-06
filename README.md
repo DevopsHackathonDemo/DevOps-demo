@@ -63,11 +63,23 @@ https://kubernetes.io/
 Kubernetes on server side handles docker container orhcestration. This allows us to perform rolling updates with 0 downtime, get information of currently running pods and nodes and scale the application as needed. The configuration files for this setup can be found in `./kubeconfigs/` and they are mainly running on a cloud server with k3s deployed. Should be noted that we found kubernetes overkill and unnecessary for a small project like this, but we considered it an important technology to learn and as such we included it in our pipeline.
 
 The entire stack is essentially built out of:
-* k3s (kubernetes distro, with loadbalancer and traefik disabled `curl -sfL https://get.k3s.io | sh -s - --no-deploy=traefik --no-deploy=servicelb`)
-* helm (kubernetes package manager)
+* k3s (kubernetes distro, with loadbalancer and traefik disabled since k3s ships with traefik v1 and we want v2. For using load balancer, consider MetalLB instead for baremetal configuration such as ours in the cloud) `curl -sfL https://get.k3s.io | sh -s - --no-deploy=traefik --no-deploy=servicelb`)
+* helm (kubernetes package manager) to install traefik
 * `devops.yaml` defining the `deployment`, `service` and `ingress`
 * `devops-tls.yaml` defining the TLS secured `IngressRoute`
 * `traefik-values.yaml` to override some of traefik default configuration values
+
+Quick tutorial to setting it all up for MVP configuration:
+Setting up the master & worker node on same machine `curl -sfL https://get.k3s.io | sh -s - --no-deploy=traefik --no-deploy=servicelb`  
+Download files from `kubeconfigs`, apply with  
+`kubectl apply -f devops.yaml`  
+`kubectl apply -f devops-tls.yaml`  
+`helm repo add traefik https://helm.traefik.io/traefik`  
+`helm repo update`  
+`helm install traefik traefik/traefik`  
+`helm --kubeconfig /etc/rancher/k3s/k3s.yaml --namespace traefik upgrade --install traefik traefik/traefik -f traefik-values.yml` (namespace arg may be unnecessary)
+
+(Full tutorial on downloading helm, setting up traefik ingress & TLS secured routing: https://community.traefik.io/t/traefik-v2-helm-a-tour-of-the-traefik-2-helm-chart/6126 )
 
 
 ## Security
