@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,7 +10,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 2
-      maxUnavailable: 0
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: devops-demo
@@ -22,11 +21,13 @@ spec:
     spec:
       containers:
         - name: devops-demo-img
-          image: marmotas/devopsdemo@sha256:abcd
+          image: marmotas/devopsdemo@sha256:sha0to0be0replaced
           imagePullPolicy: Always
           ports:
           - containerPort: 80
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,13 +38,15 @@ spec:
   ports:
   - protocol: TCP
     port: 80
+
 ---
+
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: devops-demo-ingress
-  # annotations:
-          # kubernetes.io/ingress.class: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: web
 spec:
   rules:
     - host: dev.niclaslamponen.com
@@ -52,61 +55,3 @@ spec:
         - backend:
             serviceName: devops-demo-service
             servicePort: 80
----
-#apiVersion: extensions/v1beta1
-#kind: Ingress
-#metadata:
-#  name: devops-demo-ingress
-#  annotations:
-#    kubernetes.io/ingress.class: "traefik"
-#    cert-manager.io/cluster-issuer: letsencrypt-prod
-#spec:
-#  rules:
-#    - host: dev.niclaslamponen.com
-#      http:
-#        paths:
-#          - path: /
-#            backend:
-#              serviceName: devops-demo-service
-#              servicePort: http
-#  tls:
-#  - hosts:
-#    - dev.niclaslamponen.com
-#    secretName: dev-niclaslamponen-com-tls
-#---
-#apiVersion: networking.k8s.io/v1beta1
-#kind: Ingress
-#metadata:
-#  name: devops-demo-ingress
-#  annotations:
-#    kubernetes.io/ingress.class: "nginx"
-#spec:
-#  rules:
-#    - host: dev.niclaslamponen.com
-#      http:
-#        paths:
-#        - backend:
-#            serviceName: devops-demo-service
-#            servicePort: 80
-# - http:
-#     paths:
-#     - path: /
-#       pathType: Prefix
-#       backend:
-#         service:
-#           name: devops-demo-service
-#           port:
-#             number: 80
-#---
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  namespace: metallb-system
-#  name: config
-#data:
-#  config: |
-#    address-pools:
-#    - name: default
-#      protocol: layer2
-#      addresses:
-#      - 95.217.186.152/1

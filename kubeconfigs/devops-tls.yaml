@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: devops-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`dev.niclaslamponen.com`)
+      services:
+        - name: devops-demo-service
+          port: 80
+  tls:
+    certResolver: le
